@@ -1,0 +1,270 @@
+/* リセットとベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212; /* ダークな背景 */
+    color: #e0e0e0; /* コントラスト用の明るいテキスト */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #1e1e1e; /* ダークなコンテナ */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #333; /* 微妙な境界線 */
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 300; /* エレガンスのための軽い重さ */
+    margin-bottom: 2.5rem;
+    color: #ffffff; /* 強調用の白 */
+    letter-spacing: 1px; /* 改良されたスペーシング */
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: #cccccc; /* 階層構造のために少し暗く */
+    letter-spacing: 0.5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ボタンスタイル */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.mode-button {
+    padding: 1.5rem 2.8rem;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #333; /* より暗いボタン */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 300; /* エレガンスのための軽い重さ */
+    letter-spacing: 1px;
+}
+
+.mode-button:hover {
+    background-color: #555; /* ホバー時に明るく */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.mode-button:active {
+    transform: translateY(0);
+}
+
+.control-button {
+    padding: 0.9rem 1.8rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 0.6rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.primary-button {
+    background-color: #555; /* よりダークなプライマリー */
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #777; /* ホバー時に明るく */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.secondary-button {
+    background-color: #444; /* ダークなセカンダリー */
+    color: white;
+    border: 1px solid #666; /* 微妙な境界線 */
+}
+
+.secondary-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.back-button {
+    background-color: #333;
+    color: #aaa; /* 暗めのテキスト */
+    font-size: 0.9rem;
+}
+
+.back-button:hover {
+    background-color: #444;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* 時間表示エリア */
+.display-container {
+    margin: 2.5rem 0;
+}
+
+#timer-display, #stopwatch-display {
+    font-size: 4.5rem;
+    font-weight: 300; /* エレガンスのための軽い重さ */
+    color: #ffffff;
+    background-color: #252525; /* コンテナよりやや明るい */
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 280px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    letter-spacing: 3px; /* 数字のためのより良いスペーシング */
+    border: 1px solid #333; /* 微妙な境界線 */
+}
+
+/* 時間追加ボタンのスタイル */
+.time-add-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.add-time-button {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #252525;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-time-button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reset-button {
+    background-color: #444;
+    border-color: #555;
+}
+
+.reset-button:hover {
+    background-color: #555;
+}
+
+.selected-time {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+    color: #cccccc;
+}
+
+#selected-time-display {
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* コントロールエリア */
+.control-container {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        padding: 2rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .display-container {
+        margin: 1.8rem 0;
+    }
+    
+    #timer-display, #stopwatch-display {
+        font-size: 3.5rem;
+        min-width: 220px;
+        padding: 1.2rem;
+    }
+    
+    .mode-button {
+        padding: 1.2rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .add-time-button {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    #timer-display, #stopwatch-display {
+        font-size: 2.8rem;
+        min-width: 200px;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .mode-button {
+        width: 100%;
+    }
+    
+    .control-button {
+        padding: 0.8rem 1.3rem;
+        font-size: 1rem;
+    }
+    
+    .time-add-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .add-time-button {
+        width: 100%;
+    }
+}

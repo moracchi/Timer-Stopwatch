@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Timer & Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- モダンなフォントの読み込み -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap">
+</head>
+<body>
+    <!-- 初期選択画面 -->
+    <div id="mode-selection" class="container">
+        <h1>Digital Timer & Stopwatch</h1>
+        <div class="button-container">
+            <button id="timer-select" class="mode-button">Timer</button>
+            <button id="stopwatch-select" class="mode-button">Stopwatch</button>
+        </div>
+    </div>
+
+    <!-- タイマー画面 -->
+    <div id="timer-mode" class="container hidden">
+        <h1>Timer</h1>
+        <div class="display-container">
+            <div id="timer-display">00:00</div>
+        </div>
+        
+        <div class="setting-container">
+            <!-- 時間追加ボタン -->
+            <div class="time-add-buttons">
+                <button id="add-minute" class="add-time-button">+1 Minute</button>
+                <button id="add-ten-seconds" class="add-time-button">+10 Seconds</button>
+                <button id="reset-time" class="add-time-button reset-button">Reset</button>
+            </div>
+            <div class="selected-time">
+                <span>Selected time: </span>
+                <span id="selected-time-display">00:00</span>
+            </div>
+        </div>
+        
+        <!-- タイマー操作ボタン -->
+        <div class="control-container">
+            <button id="timer-start" class="control-button primary-button">Start</button>
+            <button id="timer-pause" class="control-button secondary-button hidden">Pause</button>
+            <button id="timer-resume" class="control-button primary-button hidden">Resume</button>
+            <button id="timer-reset" class="control-button secondary-button hidden">Reset</button>
+            <button id="timer-back" class="control-button back-button">Back</button>
+        </div>
+    </div>
+
+    <!-- ストップウォッチ画面 -->
+    <div id="stopwatch-mode" class="container hidden">
+        <h1>Stopwatch</h1>
+        <div class="display-container">
+            <div id="stopwatch-display">00:00:00</div>
+        </div>
+        
+        <!-- ストップウォッチ操作ボタン -->
+        <div class="control-container">
+            <button id="stopwatch-start" class="control-button primary-button">Start</button>
+            <button id="stopwatch-reset" class="control-button secondary-button hidden">Reset</button>
+            <button id="stopwatch-back" class="control-button back-button">Back</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
