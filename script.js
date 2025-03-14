@@ -4,7 +4,7 @@
  * このスクリプトでは、タイマーとストップウォッチの機能を実装しています。
  * - 初期画面でモード選択
  * - タイマー機能（分と10秒単位のボタンで時間を加算、カウントダウン）
- * - ストップウォッチ機能（計測、停止、リセット）
+ * - ストップウォッチ機能（計測、停止、リセット、ラップタイム記録）
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -29,8 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // ストップウォッチ関連の要素
     const stopwatchDisplay = document.getElementById('stopwatch-display');
     const stopwatchStartBtn = document.getElementById('stopwatch-start');
+    const stopwatchLapBtn = document.getElementById('stopwatch-lap');
     const stopwatchResetBtn = document.getElementById('stopwatch-reset');
     const stopwatchBackBtn = document.getElementById('stopwatch-back');
+    const lapTimesDisplay = document.getElementById('lap-times');
     
     // モード選択ボタン
     const timerSelectBtn = document.getElementById('timer-select');
@@ -46,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let stopwatchInterval;
     let stopwatchRunning = false;
     let stopwatchStartTime;
+    let lapTimes = []; // ラップタイムを保存する配列
+    let lapCount = 1; // ラップカウンター
     
     // ============ モード選択 ============
     timerSelectBtn.addEventListener('click', function() {
@@ -183,11 +187,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // ストップウォッチ開始
             startStopwatch();
             stopwatchStartBtn.textContent = 'Stop';
+            stopwatchLapBtn.classList.remove('hidden');
             stopwatchResetBtn.classList.remove('hidden');
         } else {
             // ストップウォッチ停止
             stopStopwatch();
             stopwatchStartBtn.textContent = 'Start';
+        }
+    });
+    
+    // ラップタイム記録
+    stopwatchLapBtn.addEventListener('click', function() {
+        if (stopwatchRunning) {
+            // 現在のタイムをラップとして記録
+            recordLap();
         }
     });
     
@@ -219,7 +232,59 @@ document.addEventListener('DOMContentLoaded', function() {
         stopwatchTime = 0;
         updateStopwatchDisplay();
         stopwatchStartBtn.textContent = 'Start';
+        stopwatchLapBtn.classList.add('hidden');
         stopwatchResetBtn.classList.add('hidden');
+        
+        // ラップタイムもリセット
+        lapTimes = [];
+        lapCount = 1;
+        lapTimesDisplay.innerHTML = '';
+    }
+    
+    // ラップタイム記録関数
+    function recordLap() {
+        // 最大3つまでのラップタイムを保持
+        if (lapTimes.length >= 3) {
+            // 最も古いラップを削除
+            lapTimes.shift();
+        }
+        
+        // 現在のタイムをフォーマットしてラップに追加
+        const formattedTime = formatTime(stopwatchTime);
+        lapTimes.push({
+            number: lapCount,
+            time: formattedTime
+        });
+        
+        // ラップカウンターを更新
+        lapCount++;
+        
+        // ラップタイム表示を更新
+        updateLapTimesDisplay();
+    }
+    
+    // ラップタイム表示更新関数
+    function updateLapTimesDisplay() {
+        // 表示をクリア
+        lapTimesDisplay.innerHTML = '';
+        
+        // 全てのラップタイムを表示（新しいものから順に）
+        lapTimes.slice().reverse().forEach(lap => {
+            const lapItem = document.createElement('div');
+            lapItem.className = 'lap-item';
+            
+            const lapNumber = document.createElement('span');
+            lapNumber.className = 'lap-number';
+            lapNumber.textContent = `Lap ${lap.number}`;
+            
+            const lapTime = document.createElement('span');
+            lapTime.className = 'lap-time';
+            lapTime.textContent = lap.time;
+            
+            lapItem.appendChild(lapNumber);
+            lapItem.appendChild(lapTime);
+            lapTimesDisplay.appendChild(lapItem);
+        });
     }
     
     // ストップウォッチ表示更新関数
@@ -229,6 +294,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const minutes = Math.floor((stopwatchTime / (1000 * 60)) % 60);
         
         stopwatchDisplay.textContent = `${padZero(minutes)}:${padZero(seconds)}:${padZero(milliseconds)}`;
+    }
+    
+    // 時間フォーマット関数（ラップタイム用）
+    function formatTime(time) {
+        const milliseconds = Math.floor((time % 1000) / 10);
+        const seconds = Math.floor((time / 1000) % 60);
+        const minutes = Math.floor((time / (1000 * 60)) % 60);
+        
+        return `${padZero(minutes)}:${padZero(seconds)}:${padZero(milliseconds)}`;
     }
     
     // ゼロ埋め関数（表示用）
