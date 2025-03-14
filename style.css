@@ -193,6 +193,42 @@ h2 {
     color: #ffffff;
 }
 
+/* ラップタイム表示エリア */
+.lap-container {
+    margin: 1.5rem 0;
+}
+
+.lap-times-display {
+    background-color: #252525;
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 280px;
+    margin: 0 auto;
+    border: 1px solid #333;
+    min-height: 110px; /* 3つのラップタイム用のスペースを確保 */
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+    font-size: 1.1rem;
+}
+
+.lap-item:last-child {
+    border-bottom: none;
+}
+
+.lap-number {
+    color: #aaa;
+}
+
+.lap-time {
+    color: #fff;
+    font-weight: 400;
+}
+
 /* コントロールエリア */
 .control-container {
     margin-top: 2.5rem;
