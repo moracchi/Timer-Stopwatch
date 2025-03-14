@@ -55,9 +55,17 @@
             <div id="stopwatch-display">00:00:00</div>
         </div>
         
+        <!-- ラップタイム表示エリア -->
+        <div class="lap-container">
+            <div id="lap-times" class="lap-times-display">
+                <!-- ラップタイムはここに動的に追加されます -->
+            </div>
+        </div>
+        
         <!-- ストップウォッチ操作ボタン -->
         <div class="control-container">
             <button id="stopwatch-start" class="control-button primary-button">Start</button>
+            <button id="stopwatch-lap" class="control-button secondary-button hidden">Lap</button>
             <button id="stopwatch-reset" class="control-button secondary-button hidden">Reset</button>
             <button id="stopwatch-back" class="control-button back-button">Back</button>
         </div>
